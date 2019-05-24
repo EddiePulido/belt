@@ -1,0 +1,52 @@
+<div class="container p-4"> 
+    <h1>Add a review for {{movie.title}}</h1>
+    <form #reviewForm= "ngForm" class="form p-3 border" (submit)="createReview(movie._id)" >
+            <label>Your name:</label>
+            <div  class="text-danger" *ngIf="!name.valid">
+                Name must be at least 3 characters
+            </div>
+            <input
+                type="text"
+                name="name"
+                required
+                minlength="3"
+                [(ngModel)]="newReview.name"
+                #name = "ngModel"
+                class="form-control"
+            >
+            <label>Rating:</label>
+            <div  class="text-danger" *ngIf="rating.value == ''">
+                Please select a rating
+            </div>
+            <select 
+                class="form-control" 
+                #rating = "ngModel"
+                required 
+                name="rating" 
+                [(ngModel)]="newReview.rating"
+                #rating="ngModel"
+                >
+                <option value="5" selected>5 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="2">2 Stars</option>
+                <option value="1">1 Stars</option>
+            </select>
+            <div class="text-danger" *ngIf="!comment.valid">
+                Review must be at least 3 characters
+            </div>
+            <label>Comment:</label>
+            <textarea 
+                name="comment"
+                required
+                minlength="3"
+                [(ngModel)]="newReview.comment"
+                #comment="ngModel"
+                class="form-control"
+            ></textarea>
+            <input type="submit" class=" float-left btn btn-primary m-3" [disabled]="!reviewForm.form.valid && rating.value == ''" >
+
+    </form>
+
+    <button class="btn btn-danger float-right" (click)="onCancel(movie._id)">Cancel</button>
+</div>

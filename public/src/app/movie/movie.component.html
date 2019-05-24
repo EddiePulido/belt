@@ -1,0 +1,28 @@
+<div class="container p-4">
+    <button class="btn btn-danger m-3" (click)="onDelete(movie._id)">DELETE MOVIE</button>
+    <div class="container p-2 border">
+        <h1>Reviews for {{movie.title}}</h1>
+        <table class="table table-striped">
+            <thead>
+                <th>Reviewer</th>
+                <th>
+                    Stars
+                </th>
+                <th>
+                    Reviews
+                </th>
+                <th>
+                    Actions
+                </th>
+            </thead>
+            <tr *ngFor="let review of movie.ratings">
+                <td>{{review.name}}</td>
+                <td>{{review.rating}}</td>
+                <td>{{review.comment}}</td>
+                <td>
+                    <button class="btn btn-danger" (click)="onDeleteReview(review._id, movie._id)">DELETE REVIEW</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container p-4">
+    <div class="container">
+        <h1>Movie List</h1>
+        <button class="btn btn-primary float-right" (click)="onAdd()">Add a new Movie</button>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <th>Movie Title</th>
+            <th>Average Rating</th>
+            <th class="text-center">Available Actions</th>
+        </thead>
+        <!-- <div *ngFor="let movie of movies"> -->
+            <tr *ngFor='let movie of movies'>
+                <td>{{movie.title}}</td>
+                <td>
+                    {{getAvgRating(movie.ratings)}}
+                </td>
+                <td>
+                    <button class="btn btn-success m-3 d-inline-block" (click)="onReviews(movie._id)">Read Reviews</button>
+                    <button class="btn btn-primary m-3 " (click)="onWrite(movie._id)">Write Review</button>
+                </td>
+            </tr>
+        <!-- </div> -->
+    </table>
+</div>
+<app-new-movie *ngIf="addMovie" (childOutputVariable)="ReceivedChildMessage($event)"></app-new-movie>
